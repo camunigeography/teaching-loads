@@ -5,7 +5,7 @@ require_once ('frontControllerApplication.php');
 class teachingLoads extends frontControllerApplication
 {
 	# Function to assign defaults additional to the general application defaults
-	function defaults ()
+	public function defaults ()
 	{
 		# Specify available arguments as defaults or as NULL (to represent a required argument)
 		$defaults = array (
@@ -13,7 +13,6 @@ class teachingLoads extends frontControllerApplication
 			'database' => 'teachingloads',
 			'table' => 'teachingloads',
 			'termsTable' => 'terms',
-			'peopleDatabase' => 'people',
 			'administrators' => true,
 			'authentication' => true,		// All pages require authentication
 			'academicStaffCallback' => NULL,		// NB Currently only a simple public function name supported
@@ -26,7 +25,7 @@ class teachingLoads extends frontControllerApplication
 	
 	
 	# Function assign additional actions
-	function actions ()
+	public function actions ()
 	{
 		# Specify additional actions
 		$actions = array (
@@ -97,7 +96,7 @@ class teachingLoads extends frontControllerApplication
 	
 	
 	# Additional initialisation
-	function main ()
+	public function main ()
 	{
 		# Load additional required libraries
 		require_once ('timedate.php');
@@ -118,7 +117,7 @@ class teachingLoads extends frontControllerApplication
 	
 	
 	# Welcome screen
-	function home ()
+	public function home ()
 	{
 		# Show the welcome message
 		echo "\n<p>Welcome to the teaching loads database. Academic staff can use this facility to update their teaching load data throughout the year.</p>";
@@ -130,7 +129,7 @@ class teachingLoads extends frontControllerApplication
 	
 	
 	# Function to get the list of terms
-	function getTerms ()
+	private function getTerms ()
 	{
 		# Construct a query, assembling the term name dynamically
 		$query = "SELECT
@@ -149,7 +148,7 @@ class teachingLoads extends frontControllerApplication
 	
 	
 	# Function to get the user details or force them to register
-	function people ($user = false)
+	public function people ($user = false)
 	{
 		# Select the user
 		if (!$this->selectUser ($user)) {
@@ -162,7 +161,7 @@ class teachingLoads extends frontControllerApplication
 	
 	
 	# Function to select a user
-	function selectUser ($user = false, $baseUrl = '/people/')
+	private function selectUser ($user = false, $baseUrl = '/people/')
 	{
 		# If there is no user, require selection
 		if (!$user) {
@@ -190,7 +189,7 @@ class teachingLoads extends frontControllerApplication
 	
 	
 	# Function to show the results for each term
-	function terms ($term = false)
+	public function terms ($term = false)
 	{
 		# If there is no term, require selection
 		if (!$term) {
@@ -229,7 +228,7 @@ class teachingLoads extends frontControllerApplication
 	
 	
 	# Function to format a user's name
-	function formatName ($user, $addLinkBase = false)
+	private function formatName ($user, $addLinkBase = false)
 	{
 		# Assemble the name
 		$person = $this->users[$user];
@@ -247,7 +246,7 @@ class teachingLoads extends frontControllerApplication
 	
 	
 	# Function to update/show the user's data
-	function userData ($user, $term)
+	private function userData ($user, $term)
 	{
 		# Get the data for this term
 		$data = $this->getData ($term, $user);
@@ -314,7 +313,7 @@ class teachingLoads extends frontControllerApplication
 	
 	
 	# Function to retrieve data
-	function getData ($term, $user = false)
+	private function getData ($term, $user = false)
 	{
 		# Define the conditions
 		$conditions["term__JOIN__{$this->settings['database']}__{$this->settings['termsTable']}__reserved"] = $term;
@@ -330,7 +329,7 @@ class teachingLoads extends frontControllerApplication
 	
 	
 	# Function to show the results for a term
-	function showResults ($term)
+	private function showResults ($term)
 	{
 		# Ensure the user is an administrator
 		if (!$this->userIsAdministrator) {
@@ -440,7 +439,7 @@ class teachingLoads extends frontControllerApplication
 	
 	
 	# Function to show a selection list of staff
-	function personSelectionList ()
+	private function personSelectionList ()
 	{
 		# Compile a list, showing only the current user if they are not an administrator
 		$list = array ();
@@ -457,7 +456,7 @@ class teachingLoads extends frontControllerApplication
 	
 	
 	# Function to show a selection list of terms
-	function selectTerm ($user = false)
+	private function selectTerm ($user = false)
 	{
 		# Compile a list
 		$list = array ();
