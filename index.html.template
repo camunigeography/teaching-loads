@@ -1,0 +1,22 @@
+<?php
+
+# Define the settings
+$settings = array (
+	'password' => 'the_password',
+	'academicStaffCallback' => 'getAcademicStaff',
+);
+
+# Callback function to get a list of academic staff
+function getAcademicStaff ($databaseConnection)
+{
+	# Get the list
+	// ...
+	return $academicStaff;
+}
+
+
+# Run the application with the specified settings
+require_once ('teachingLoads.php');
+new teachingLoads ($settings);
+
+?>

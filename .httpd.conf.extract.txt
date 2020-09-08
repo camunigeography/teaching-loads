@@ -1,0 +1,30 @@
+# Application Apache directives
+
+# Load using:
+#	# Teaching loads system
+#	Include /path/to/teaching-loads/.httpd.conf.extract.txt
+#	Use MacroTeachingLoads /path/to/teaching-loads "/path/to/site/:/path/to/teaching-loads/:/path/to/php/libraries/"
+
+
+<Macro MacroTeachingLoads $baseUrl $includePath>
+	
+	# Include path
+	<LocationMatch $baseUrl>
+		php_value include_path "$includePath"
+	</LocationMatch>
+	
+	# Front controller application support
+	Use MacroFrontControllerApplication "$baseUrl/" "Teaching loads"
+	
+	# Application routing
+	RewriteEngine on
+	RewriteRule ^$baseUrl/(people|terms)/(|index.html)$ $baseUrl/index.html?action=$1 [L]
+	RewriteRule ^$baseUrl/(people|terms)$ $baseUrl/$1/ [R]
+	RewriteRule ^$baseUrl/(people)/([a-z][a-z0-9]{1,7})/(|index.html)$ $baseUrl/index.html?action=$1&item=$2 [L]
+	RewriteRule ^$baseUrl/(people)/([a-z][a-z0-9]{1,7})$ $baseUrl/$1/$2/ [R]
+	RewriteRule ^$baseUrl/(terms)/([0-9]{4})(michaelmas|lent|easter)/(|index.html)$ $baseUrl/index.html?action=$1&item=$2$3 [L]
+	RewriteRule ^$baseUrl/(terms)/([0-9]{4})(michaelmas|lent|easter)$ $baseUrl/$1/$2$3/ [R]
+	RewriteRule ^$baseUrl/(terms)/([0-9]{4})(michaelmas|lent|easter)/([a-z][a-z0-9]{1,7})/(|index.html)$ $baseUrl/index.html?action=$1&item=$2$3&user=$4 [L]
+	RewriteRule ^$baseUrl/(terms)/([0-9]{4})(michaelmas|lent|easter)/([a-z][a-z0-9]{1,7})$ $baseUrl/$1/$2$3/$4/ [R]
+	
+</Macro>
