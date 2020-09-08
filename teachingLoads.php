@@ -47,6 +47,55 @@ class teachingLoads extends frontControllerApplication
 	}
 	
 	
+	# Database structure definition
+	public function databaseStructure ()
+	{
+		return "
+			
+			-- Administrators
+			CREATE TABLE `administrators` (
+			  `username__JOIN__people__people__reserved` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Username',
+			  `active` enum('','Yes','No') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Yes' COMMENT 'Currently active?',
+			  PRIMARY KEY (`username__JOIN__people__people__reserved`)
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Helpdesk administrators';
+			
+			-- Teaching load submissions
+			CREATE TABLE `teachingloads` (
+			  `id` int NOT NULL AUTO_INCREMENT COMMENT 'Unique key',
+			  `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'Timestamp',
+			  `username__JOIN__people__people__reserved` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Username',
+			  `term__JOIN__teachingloads__terms__reserved` varchar(14) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Term',
+			  `sabbatical` enum('Not on sabbatical','On sabbatical') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Not on sabbatical' COMMENT 'On sabbatical?',
+			  `fellowship` enum('Not on a Research Fellowship','On a Research Fellowship') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Not on a Research Fellowship' COMMENT 'On a Research Fellowship?',
+			  `lecturesUndergraduate` float(5,1) DEFAULT NULL COMMENT 'Lectures (undergraduate)',
+			  `lecturesGraduate` float(5,1) DEFAULT NULL COMMENT 'Lectures (MPhil)',
+			  `supervisions` float(5,1) DEFAULT NULL COMMENT 'Supervisions',
+			  `practicals` float(5,1) DEFAULT NULL COMMENT 'Practicals',
+			  `fieldtripsDay` float(5,1) DEFAULT NULL COMMENT 'Day fieldtrips (7 hours per day)',
+			  `fieldtripsResidential` float(5,1) DEFAULT NULL COMMENT 'Residential fieldtrips (Day fieldtrips (56 hours per week)',
+			  `talks` float(5,1) DEFAULT NULL COMMENT 'Talks',
+			  `forums` float(5,1) DEFAULT NULL COMMENT 'Forums',
+			  `workshops` float(5,1) DEFAULT NULL COMMENT 'Workshops',
+			  `symposiums` float(5,1) DEFAULT NULL COMMENT 'Symposiums',
+			  `committees` float(5,1) DEFAULT NULL COMMENT 'Committees',
+			  `meetings` float(5,1) DEFAULT NULL COMMENT 'Meetings',
+			  `other` float(5,1) DEFAULT NULL COMMENT 'Other',
+			  PRIMARY KEY (`id`)
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Teaching loads';
+			
+			-- Terms
+			CREATE TABLE `terms` (
+			  `id` varchar(14) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Unique key',
+			  `year` varchar(4) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Starting year (e.g. 2007 in the case of 07/08)',
+			  `term` enum('','Michaelmas','Lent','Easter') COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Term (used for ordering)',
+			  `opening` date NOT NULL COMMENT 'Date when entries open for editing',
+			  `closing` date NOT NULL COMMENT 'Date when entries close for editing',
+			  PRIMARY KEY (`id`)
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Terms';
+		";
+	}
+	
+	
 	# Additional initialisation
 	function main ()
 	{
