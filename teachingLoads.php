@@ -16,7 +16,8 @@ class teachingLoads extends frontControllerApplication
 			'peopleDatabase' => 'people',
 			'administrators' => true,
 			'authentication' => true,		// All pages require authentication
-			'academicStaffCallback'		=> NULL,		// NB Currently only a simple public function name supported
+			'academicStaffCallback' => NULL,		// NB Currently only a simple public function name supported
+			'tabUlClass' => 'tabsflat',
 		);
 		
 		# Return the defaults
