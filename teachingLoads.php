@@ -56,7 +56,7 @@ class teachingLoads extends frontControllerApplication
 			  `username__JOIN__people__people__reserved` varchar(191) NOT NULL COMMENT 'Username',
 			  `active` enum('','Yes','No') NOT NULL DEFAULT 'Yes' COMMENT 'Currently active?',
 			  PRIMARY KEY (`username__JOIN__people__people__reserved`)
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Helpdesk administrators';
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Helpdesk administrators';
 			
 			-- Teaching load submissions
 			CREATE TABLE `teachingloads` (
@@ -80,7 +80,7 @@ class teachingLoads extends frontControllerApplication
 			  `meetings` float(5,1) DEFAULT NULL COMMENT 'Meetings',
 			  `other` float(5,1) DEFAULT NULL COMMENT 'Other',
 			  PRIMARY KEY (`id`)
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Teaching loads';
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Teaching loads';
 			
 			-- Terms
 			CREATE TABLE `terms` (
@@ -90,7 +90,7 @@ class teachingLoads extends frontControllerApplication
 			  `opening` date NOT NULL COMMENT 'Date when entries open for editing',
 			  `closing` date NOT NULL COMMENT 'Date when entries close for editing',
 			  PRIMARY KEY (`id`)
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Terms';
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Terms';
 		";
 	}
 	
