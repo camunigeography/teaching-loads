@@ -16,7 +16,7 @@ function getAcademicStaff ($databaseConnection)
 
 
 # Run the application with the specified settings
-require_once ('teachingLoads.php');
+require_once ('vendor/autoload.php');
 new teachingLoads ($settings);
 
 ?>

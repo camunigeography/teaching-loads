@@ -1,7 +1,6 @@
 <?php
 
 # Teaching loads submission facility
-require_once ('frontControllerApplication.php');
 class teachingLoads extends frontControllerApplication
 {
 	# Function to assign defaults additional to the general application defaults
@@ -98,9 +97,6 @@ class teachingLoads extends frontControllerApplication
 	# Additional initialisation
 	public function main ()
 	{
-		# Load additional required libraries
-		require_once ('timedate.php');
-		
 		# Get academic staff
 		$callbackFunction = $this->settings['academicStaffCallback'];
 		if (!$this->users = $callbackFunction ($this->databaseConnection)) {

@@ -3,15 +3,10 @@
 # Load using:
 #	# Teaching loads system
 #	Include /path/to/teaching-loads/.httpd.conf.extract.txt
-#	Use MacroTeachingLoads /path/to/teaching-loads "/path/to/site/:/path/to/teaching-loads/:/path/to/php/libraries/"
+#	Use MacroTeachingLoads /path/to/teaching-loads
 
 
-<Macro MacroTeachingLoads $baseUrl $includePath>
-	
-	# Include path
-	<LocationMatch $baseUrl>
-		php_value include_path "$includePath"
-	</LocationMatch>
+<Macro MacroTeachingLoads $baseUrl>
 	
 	# Front controller application support
 	Use MacroFrontControllerApplication "$baseUrl/" "Teaching loads"
