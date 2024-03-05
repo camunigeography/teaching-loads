@@ -55,7 +55,7 @@ class teachingLoads extends frontControllerApplication
 			  `username__JOIN__people__people__reserved` varchar(191) NOT NULL COMMENT 'Username',
 			  `active` enum('','Yes','No') NOT NULL DEFAULT 'Yes' COMMENT 'Currently active?',
 			  PRIMARY KEY (`username__JOIN__people__people__reserved`)
-			) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Helpdesk administrators';
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Administrators';
 			
 			-- Teaching load submissions
 			CREATE TABLE `teachingloads` (
